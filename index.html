@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+     window.onload = function() {
+       window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
+           window.flutter_inappwebview.callHandler('handlerFoo')
+             .then(function(result) {
+               // print to the console the data coming
+               // from the Flutter side.
+               console.log(JSON.stringify(result));
+               window.flutter_inappwebview.callHandler('handlerFooWithArgs', 1, true, ['bar', 5], {foo: 'baz'}, result);
+           });
+       });
+       document.getElementById("btn").onclick = function() {
+        alert('테스트!!')
+        window.flutter_inappwebview._callHandler('handleData', 1, true, ['bar', 5], {foo: 'baz'});
+      }
+     }
+</script>
+  <button id="btn">테스트 버튼</button>
+</body>
+</html>
